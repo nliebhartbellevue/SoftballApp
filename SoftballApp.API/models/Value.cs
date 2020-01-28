@@ -1,4 +1,4 @@
-namespace SoftballApp.API.models
+namespace SoftballApp.API.Models
 {
     public class Value
     {
