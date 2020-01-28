@@ -7,4 +7,4 @@ obj
 # database
 *.db
 # appsettings.json file with jwt token secret
-# appsettings.json
+appsettings.json
