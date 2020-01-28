@@ -1,0 +1,8 @@
+# vs code configuration
+.vscode
+# bin folder
+bin
+# obj folder
+obj
+# database
+*.db
