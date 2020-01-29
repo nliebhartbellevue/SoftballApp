@@ -6,5 +6,7 @@ bin
 obj
 # database
 *.db
+*.db-shm
+*.db-wal
 # appsettings.json file with jwt token secret
 appsettings.json
