@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
 
 // Local Imports
 import { AppComponent } from './app.component';
@@ -14,10 +15,16 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { PlayerListComponent } from './player-list/player-list.component';
+import { PlayerListComponent } from './players/player-list/player-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
+import { PlayerCardComponent } from './players/player-card/player-card.component';
+import { PlayerDetailComponent } from './players/player-detail/player-detail.component';
 import { appRoutes } from './routes';
+
+export function tokenGetter() {
+   return localStorage.getItem('token');
+}
 
 @NgModule({
    declarations: [
@@ -27,7 +34,9 @@ import { appRoutes } from './routes';
       RegisterComponent,
       PlayerListComponent,
       ListsComponent,
-      MessagesComponent
+      MessagesComponent,
+      PlayerCardComponent,
+      PlayerDetailComponent
    ],
    imports: [
       BrowserModule,
@@ -35,7 +44,14 @@ import { appRoutes } from './routes';
       FormsModule,
       BrowserAnimationsModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      JwtModule.forRoot({
+         config: {
+            tokenGetter,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:5000/api/auth']
+         }
+      })
    ],
    providers: [
       AuthService,
