@@ -31,6 +31,9 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserService } from './_services/user.service';
 import { PlayerDetailResolver } from './_resolvers/player-detail.resolver';
 import { PlayerListResolver } from './_resolvers/player-list.resolver';
+import { PlayerEditComponent } from './players/player-edit/player-edit.component';
+import { PlayerEditResolver } from './_resolvers/player-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -53,7 +56,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
       ListsComponent,
       MessagesComponent,
       PlayerCardComponent,
-      PlayerDetailComponent
+      PlayerDetailComponent,
+      PlayerEditComponent
    ],
    imports: [
       BrowserModule,
@@ -77,8 +81,10 @@ export class CustomHammerConfig extends HammerGestureConfig {
       ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
+      PreventUnsavedChanges,
       UserService,
       PlayerDetailResolver,
+      PlayerEditResolver,
       PlayerListResolver,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
